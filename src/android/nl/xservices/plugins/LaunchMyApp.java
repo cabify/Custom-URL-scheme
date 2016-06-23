@@ -1,18 +1,20 @@
 package nl.xservices.plugins;
 
-import android.content.Intent;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaActivity;
-import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.content.Intent;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.URLDecoder;
 import java.util.Locale;
 
 public class LaunchMyApp extends CordovaPlugin {
@@ -95,6 +97,8 @@ public class LaunchMyApp extends CordovaPlugin {
     if (str == null) {
       return;
     }
+    str = URLDecoder.decode(str);
+    str = str.replaceAll("(\\r|\\n)", "");
     int sz;
     sz = str.length();
     for (int i = 0; i < sz; i++) {
